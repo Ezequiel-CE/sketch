@@ -3,6 +3,7 @@ const container = document.querySelector(".container");
 //llena la grid inicialmente
 for (let i = 0; i < 256; i++) {
   const div = document.createElement("div");
+  div.setAttribute("data-dark", 255);
   div.classList.add("piece");
   container.appendChild(div);
 }
@@ -51,6 +52,7 @@ const resetGrid = () => {
   for (let i = 0; i < newGridSide * newGridSide; i++) {
     const div = document.createElement("div");
     div.classList.add("piece");
+    div.setAttribute("data-dark", 255);
     container.appendChild(div);
   }
 
@@ -82,7 +84,6 @@ const changeColorRGB = (e) => {
 //QUita los colores y agrega rgb
 const colorRGB = () => {
   pieces.forEach((div) => {
-    div.removeEventListener("mouseenter", changeColor);
     div.removeEventListener("mouseenter", changeColorBlack);
 
     div.addEventListener("mouseenter", changeColorRGB);
@@ -102,13 +103,33 @@ const changeColorBlack = (e) => {
 
 const ColorBlack = () => {
   pieces.forEach((div) => {
-    div.removeEventListener("mouseleave", changeColor);
-    div.removeEventListener("mouseleave", changeColorRGB);
-
+    div.removeEventListener("mouseenter", changeColorRGB);
     div.addEventListener("mouseenter", changeColorBlack);
   });
 };
 
 btnBlack.addEventListener("click", ColorBlack);
 
-//incemeent darkeness
+//increment darkeness
+
+const darkbtn = document.querySelector("#dark");
+
+const changeDark = (e) => {
+  //resta el dataset y lo asigna al rgb
+  e.target.dataset.dark = e.target.dataset.dark - 10;
+  data = e.target.dataset.dark;
+  e.target.style.backgroundColor = `rgb(${data},${data},${data})`;
+};
+
+const colorDarkness = () => {
+  pieces.forEach((div) => {
+    div.dataset.dark = 255;
+
+    div.removeEventListener("mouseenter", changeColorRGB);
+    div.removeEventListener("mouseenter", changeColorBlack);
+
+    div.addEventListener("mouseenter", changeDark);
+  });
+};
+
+darkbtn.addEventListener("click", colorDarkness);
