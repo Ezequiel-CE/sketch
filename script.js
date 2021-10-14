@@ -19,6 +19,11 @@ pieces.forEach((div) => {
   div.addEventListener("mouseenter", changeColor);
 });
 
+////////////
+
+//variable que deside
+let actualFunction = "";
+
 //reset
 
 const btnReset = document.querySelector("#reset");
@@ -64,7 +69,14 @@ const resetGrid = () => {
 
   //les coloca el evento
   pieces.forEach((div) => {
-    div.addEventListener("mouseleave", changeColor);
+    //escoge el evento que estaba
+    if (actualFunction === "rgb") {
+      div.addEventListener("mouseenter", changeColorRGB);
+    } else if (actualFunction === "black") {
+      div.addEventListener("mouseenter", changeColorBlack);
+    } else if (actualFunction === "opaciti") {
+      div.addEventListener("mouseenter", changeDark);
+    }
   });
 };
 
@@ -83,6 +95,7 @@ const changeColorRGB = (e) => {
 
 //QUita los colores y agrega rgb
 const colorRGB = () => {
+  actualFunction = "rgb";
   pieces.forEach((div) => {
     div.removeEventListener("mouseenter", changeColorBlack);
 
@@ -102,6 +115,7 @@ const changeColorBlack = (e) => {
 //quita los otro y agrega black
 
 const ColorBlack = () => {
+  actualFunction = "black";
   pieces.forEach((div) => {
     div.removeEventListener("mouseenter", changeColorRGB);
     div.addEventListener("mouseenter", changeColorBlack);
@@ -122,7 +136,9 @@ const changeDark = (e) => {
 };
 
 const colorDarkness = () => {
+  actualFunction = "opaciti";
   pieces.forEach((div) => {
+    // al apretar el boton devielve el dataset de los div al original
     div.dataset.dark = 255;
 
     div.removeEventListener("mouseenter", changeColorRGB);
