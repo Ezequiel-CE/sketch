@@ -14,6 +14,7 @@ nav {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
+  gap: 20px;
 }
 
 h1 {
@@ -44,10 +45,6 @@ h1 {
   background-color: white;
 }
 
-.piece:hover {
-  background-color: grey;
-}
-
 .passed {
-  background-color: grey;
+  background-color: black;
 }

@@ -15,12 +15,12 @@ const changeColor = (e) => {
 };
 
 pieces.forEach((div) => {
-  div.addEventListener("mouseleave", changeColor);
+  div.addEventListener("mouseenter", changeColor);
 });
 
 //reset
 
-const btnReset = document.querySelector(".btn");
+const btnReset = document.querySelector("#reset");
 
 const resetGrid = () => {
   //remove the class passed
@@ -67,3 +67,48 @@ const resetGrid = () => {
 };
 
 btnReset.addEventListener("click", resetGrid);
+
+//RGB
+
+const btnRgb = document.querySelector("#rgb");
+
+const changeColorRGB = (e) => {
+  const x = Math.floor(Math.random() * 256);
+  const y = Math.floor(Math.random() * 256);
+  const z = Math.floor(Math.random() * 256);
+  e.target.style.backgroundColor = `rgb(${x},${y},${z})`;
+};
+
+//QUita los colores y agrega rgb
+const colorRGB = () => {
+  pieces.forEach((div) => {
+    div.removeEventListener("mouseenter", changeColor);
+    div.removeEventListener("mouseenter", changeColorBlack);
+
+    div.addEventListener("mouseenter", changeColorRGB);
+  });
+};
+btnRgb.addEventListener("click", colorRGB);
+
+//black
+
+const btnBlack = document.querySelector("#black");
+
+const changeColorBlack = (e) => {
+  e.target.style.backgroundColor = "black";
+};
+
+//quita los otro y agrega black
+
+const ColorBlack = () => {
+  pieces.forEach((div) => {
+    div.removeEventListener("mouseleave", changeColor);
+    div.removeEventListener("mouseleave", changeColorRGB);
+
+    div.addEventListener("mouseenter", changeColorBlack);
+  });
+};
+
+btnBlack.addEventListener("click", ColorBlack);
+
+//incemeent darkeness
