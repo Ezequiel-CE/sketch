@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(114, 182, 13, 0.692);
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+
+.btn {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  margin: auto;
+  width: 600px;
+  height: 600px;
+  background-color: wheat;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+}
+
+.piece {
+  background-color: white;
+}
+
+.piece:hover {
+  background-color: grey;
+}
+
+.passed {
+  background-color: grey;
+}
